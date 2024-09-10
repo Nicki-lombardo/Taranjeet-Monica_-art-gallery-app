@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }) {
   if (error) return <div>Something is wrong. Please Wait!!</div>;
   if (!artPieces) return <div>Loading...</div>;
 
+  console.log('Art Pieces Data:', artPieces);
   return (
     <>
       <Navigation />
