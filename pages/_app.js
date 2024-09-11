@@ -1,23 +1,38 @@
 import { useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
-import Navigation from '@/Components/Navigation';
 import useSWR from 'swr';
+import Navigation from '@/Components/Navigation';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 function MyApp({ Component, pageProps }) {
   const { data: artPieces, error } = useSWR('https://example-apis.vercel.app/api/art', fetcher);
-  const [favorites, setFavorites] = useLocalStorageState('favorites', { defaultValue: [] });
+  const [artPiecesInfo, setArtPiecesInfo] = useLocalStorageState('art-pieces-info', { defaultValue: {} });
 
   if (error) return <div>Failed to load</div>;
   if (!artPieces) return <div>Loading...</div>;
 
   const toggleFavorite = (slug) => {
-    setFavorites(prevFavorites =>
-      prevFavorites.includes(slug)
-        ? prevFavorites.filter(fav => fav !== slug)
-        : [...prevFavorites, slug]
-    );
+    setArtPiecesInfo((prevInfo) => ({
+      ...prevInfo,
+      [slug]: {
+        ...prevInfo[slug],
+        isFavorite: !prevInfo[slug]?.isFavorite,
+      },
+    }));
+  };
+
+  const addComment = (slug, comment) => {
+    setArtPiecesInfo((prevInfo) => {
+      const prevComments = prevInfo[slug]?.comments || [];
+      return {
+        ...prevInfo,
+        [slug]: {
+          ...prevInfo[slug],
+          comments: [...prevComments, comment],
+        },
+      };
+    });
   };
 
   return (
@@ -26,8 +41,9 @@ function MyApp({ Component, pageProps }) {
       <Component
         {...pageProps}
         artPieces={artPieces}
-        favoriteSlugs={favorites}
+        artPiecesInfo={artPiecesInfo}
         onToggleFavorite={toggleFavorite}
+        onAddComment={addComment}
       />
     </>
   );

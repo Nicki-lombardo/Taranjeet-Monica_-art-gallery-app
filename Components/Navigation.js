@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Navigation() {
+  const router = useRouter(); 
+  const currentPath = router.pathname; 
+
   return (
     <nav>
       <ul>
@@ -8,10 +12,14 @@ export default function Navigation() {
           <Link href="/spotlight">Spotlight</Link>
         </li>
         <li>
-          <Link href="/art-pieces">Art Pieces</Link>
+          {currentPath !== '/art-pieces' && (
+            <Link href="/art-pieces">Art Pieces</Link>
+          )}
         </li>
         <li>
-          <Link href="/favorites">Favorites</Link>
+          {currentPath !== '/favorites' && (
+            <Link href="/favorites">Favorites</Link>
+          )}
         </li>
       </ul>
     </nav>

@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import Spotlight from '../components/Spotlight';
+import { pickRandomPiece } from '../../utils/pickRandomPiece';
+import Spotlight from '@/Components/Spotlight';
 
-export default function SpotlightPage({ pieces }) {
-  const [spotlightPiece, setSpotlightPiece] = useState(null);
+export default function SpotlightPage({ artPieces, artPiecesInfo, onToggleFavorite }) {
+  const spotlightPiece = pickRandomPiece(artPieces);
+  const isFavorite = artPiecesInfo[spotlightPiece?.slug]?.isFavorite || false;
 
-  useEffect(() => {
-    if (pieces && pieces.length > 0) {
-      const randomIndex = Math.floor(Math.random() * pieces.length);
-      setSpotlightPiece(pieces[randomIndex]);
-    }
-  }, [pieces]);
-
-  if (!spotlightPiece) {
-    return <div>Loading...</div>;
-  }
-
-  return <Spotlight image={spotlightPiece.image} artist={spotlightPiece.artist} />;
+  return (
+    <div>
+      {spotlightPiece && (
+        <Spotlight
+          artPiece={spotlightPiece}
+          isFavorite={isFavorite}
+          onToggleFavorite={() => onToggleFavorite(spotlightPiece.slug)}
+        />
+      )}
+    </div>
+  );
 }

@@ -1,17 +1,25 @@
-import ArtPiecePreview from './ArtPiecePreview';
+import Image from 'next/image';
+import FavoriteButton from './FavoriteButton';
 
-export default function Spotlight({ image, title, artist, slug, isFavorite, onToggleFavorite }) {
+
+export default function Spotlight({ artPiece, isFavorite, onToggleFavorite }) {
+  if (!artPiece) {
+    return <div>No Spotlight Available for now! 😞</div>;
+  }
+
+  const { imageSource, title, artist } = artPiece;
+
   return (
     <div>
-      <h1>Spotlight</h1>
-      <ArtPiecePreview
-        image={image}
-        title={title}
-        artist={artist}
-        slug={slug}
-        isFavorite={isFavorite}
-        onToggleFavorite={onToggleFavorite}
+      <Image src={imageSource} 
+      alt={title} 
+      width={800} 
+      height={600} 
       />
+      
+      <h1>{title}</h1>
+      <p>{artist}</p>
+      <FavoriteButton isFavorite={isFavorite} onToggleFavorite={onToggleFavorite} />
     </div>
   );
 }

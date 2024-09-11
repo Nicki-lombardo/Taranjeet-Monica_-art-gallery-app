@@ -1,14 +1,18 @@
-import FavoriteButton from './FavoriteButton';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import FavoriteButton from './FavoriteButton';
 
-
-export default function ArtPiecePreview({ image, title, artist, slug, isFavorite, onToggleFavorite }) {
+export default function ArtPiecePreview({ imageSource, title, artist, slug, isFavorite, onToggleFavorite }) {
   return (
     <div>
       <Link href={`/art-pieces/${slug}`}>
-        <Image src={image} alt={title} width={200} height={200} />
-        <h2>{title}</h2>
+      <Image src={imageSource} 
+      alt={title} 
+      width={200} 
+      height={200} 
+      />
+      
+      <h2>{title}</h2>
         <p>{artist}</p>
       </Link>
       <FavoriteButton isFavorite={isFavorite} onToggleFavorite={onToggleFavorite} />

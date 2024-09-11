@@ -1,15 +1,24 @@
 import { useRouter } from 'next/router';
-import ArtPieceDetails from '../../components/ArtPieceDetails';
+import ArtPieceDetails from '@/Components/ArtPieceDetails';
 
-export default function ArtPiecePage({ artPieces, onToggleFavorite, favoriteSlugs }) {
+export default function ArtPiecePage({ artPieces, artPiecesInfo, onToggleFavorite, onAddComment }) {
   const router = useRouter();
   const { slug } = router.query;
 
-  const artPiece = artPieces.find(piece => piece.slug === slug);
+  if (!slug || !artPieces) return <div>Loading...</div>;
 
-  if (!artPiece) return <div>Loading...</div>;
+  const artPiece = artPieces.find((piece) => piece.slug === slug);
+  const pieceInfo = artPiecesInfo[slug] || {};
+  const isFavorite = pieceInfo.isFavorite || false;
+  const comments = pieceInfo.comments || [];
 
-  const isFavorite = favoriteSlugs.includes(slug);
+  const handleToggleFavorite = () => {
+    onToggleFavorite(slug);
+  };
+
+  const handleAddComment = (comment) => {
+    onAddComment(slug, comment);
+  };
 
   return (
     <ArtPieceDetails
@@ -19,7 +28,10 @@ export default function ArtPiecePage({ artPieces, onToggleFavorite, favoriteSlug
       year={artPiece.year}
       genre={artPiece.genre}
       isFavorite={isFavorite}
-      onToggleFavorite={() => onToggleFavorite(slug)}
+      onToggleFavorite={handleToggleFavorite}
+      comments={comments}
+      onSubmitComment={handleAddComment}
+      colors={artPiece.colors}
     />
   );
 }
