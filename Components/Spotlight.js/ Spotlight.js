@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import FavoriteButton from './FavoriteButton';
+import FavoriteButton from '../FavoriteButton';
 
 
 export default function Spotlight({ artPiece, isFavorite, onToggleFavorite }) {
