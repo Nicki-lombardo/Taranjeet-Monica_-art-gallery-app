@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import useSWR from "swr";
-import Navigation from "@/Components/Navigation/Navigation";
+import Navigation from "@/components/Navigation/Navigation";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 

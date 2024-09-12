@@ -1,6 +1,10 @@
-import ArtPieces from "@/Components/ArtPieces";
+import ArtPieces from "../../components/ArtPieces";
 
-export default function ArtPiecesPage({ artPieces, artPiecesInfo, onToggleFavorite }) {
+export default function ArtPiecesPage({
+  artPieces,
+  artPiecesInfo,
+  onToggleFavorite,
+}) {
   return (
     <ArtPieces
       pieces={artPieces}

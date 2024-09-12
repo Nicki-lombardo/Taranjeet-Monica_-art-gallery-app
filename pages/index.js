@@ -1,5 +1,5 @@
 import { pickRandomPiece } from "../utils/pickRandomPiece";
-import Spotlight from "@/Components/Spotlight.js/ Spotlight";
+import Spotlight from "@/components/Spotlight/ Spotlight";
 
 export default function SpotlightPage({
   artPieces,

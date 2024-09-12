@@ -1,7 +1,12 @@
-import { useRouter } from 'next/router';
-import ArtPieceDetails from '@/Components/ArtPieceDetails';
+import { useRouter } from "next/router";
+import ArtPieceDetails from "../../components/ArtPieceDetails";
 
-export default function ArtPiecePage({ artPieces, artPiecesInfo, onToggleFavorite, onAddComment }) {
+export default function ArtPiecePage({
+  artPieces,
+  artPiecesInfo,
+  onToggleFavorite,
+  onAddComment,
+}) {
   const router = useRouter();
   const { slug } = router.query;
 
