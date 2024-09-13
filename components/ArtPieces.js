@@ -5,7 +5,7 @@ export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
     <div>
       {pieces.map((piece) => (
         <ArtPiecePreview
-          key={piece.slug}
+          key={piece.slug} // piece.id  why slug?
           imageSource={piece.imageSource}
           title={piece.title}
           artist={piece.artist}
