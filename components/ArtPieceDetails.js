@@ -16,12 +16,13 @@ export default function ArtPieceDetails({
   onSubmitComment,
   colors,
 }) {
+  console.log(imageSource)
   return (
     <div>
       <Link href="/art-pieces">
-        <a>Back to List</a>
+        Back to List
       </Link>
-      <Image src={artPiece.imageSource} 
+      <Image src={imageSource} 
       alt={title} 
       width={600} 
       height={600} 

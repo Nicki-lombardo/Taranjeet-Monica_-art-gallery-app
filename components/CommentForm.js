@@ -1,4 +1,4 @@
-export function CommentForm({ onSubmitComment }) {
+export default function CommentForm({ onSubmitComment }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const commentText = event.target.elements.comment.value; 
