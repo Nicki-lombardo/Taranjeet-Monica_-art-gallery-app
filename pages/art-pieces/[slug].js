@@ -37,6 +37,7 @@ export default function ArtPiecePage({
       comments={comments}
       onSubmitComment={handleAddComment}
       colors={artPiece.colors}
+      imageSource={artPiece.imageSource}
     />
   );
 }

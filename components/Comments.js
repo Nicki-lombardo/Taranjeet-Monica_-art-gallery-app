@@ -1,4 +1,4 @@
-export function Comments({ comments }) { 
+export default function Comments({ comments }) { 
   return (
     <div>
       <ul>
