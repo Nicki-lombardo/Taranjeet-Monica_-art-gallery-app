@@ -1,11 +1,21 @@
-import ArtPiecePreview from "./ArtPiecePreview/ArtPiecePreview";
+
+import styled from 'styled-components';
+import ArtPiecePreview from './ArtPiecePreview/ArtPiecePreview';
+
+const ArtPiecesContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem; 
+  padding: 1rem;
+  justify-items: center; 
+`;
 
 export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
   return (
-    <div>
+    <ArtPiecesContainer>
       {pieces.map((piece) => (
         <ArtPiecePreview
-          key={piece.slug} // piece.id  why slug?
+          key={piece.slug}
           imageSource={piece.imageSource}
           title={piece.title}
           artist={piece.artist}
@@ -14,6 +24,6 @@ export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
           onToggleFavorite={() => onToggleFavorite(piece.slug)}
         />
       ))}
-    </div>
+    </ArtPiecesContainer>
   );
 }

@@ -3,13 +3,13 @@ import Navigation from "./Navigation";
 import { useRouter } from "next/router";
 import "@testing-library/jest-dom";
 
-// Mock de useRouter
+
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
 test("renders navigation links correctly", () => {
-  // Mock de la ruta actual
+  
   useRouter.mockImplementation(() => ({
     pathname: "/",
   }));

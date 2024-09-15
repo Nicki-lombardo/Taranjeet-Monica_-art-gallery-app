@@ -1,28 +1,25 @@
-
 import styled from 'styled-components';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
-const Nav = styled.nav`
+const FooterWrapper = styled.footer`
   background-color: ${({ theme }) => theme.colors.primary};
   color: white;
   padding: 1rem;
   position: fixed;
-  top: 0;
+  bottom: 0;
   width: 100%;
+  text-align: center;
   z-index: 1000;
-  display: flex;
-  justify-content: center;
 `;
 
-const NavList = styled.ul`
+const FooterList = styled.ul`
   display: flex;
   justify-content: center;
   list-style: none;
   padding: 0;
 `;
 
-const NavItem = styled.li`
+const FooterItem = styled.li`
   margin: 0 1rem;
   font-size: 1.2rem;
 
@@ -37,23 +34,20 @@ const NavItem = styled.li`
   }
 `;
 
-export default function Navigation() {
-  const router = useRouter();
-  const currentPath = router.pathname;
-
+export default function Footer() {
   return (
-    <Nav>
-      <NavList>
-        <NavItem>
+    <FooterWrapper>
+      <FooterList>
+        <FooterItem>
           <Link href="/">Spotlight</Link>
-        </NavItem>
-        <NavItem>
+        </FooterItem>
+        <FooterItem>
           <Link href="/art-pieces">Art Pieces</Link>
-        </NavItem>
-        <NavItem>
+        </FooterItem>
+        <FooterItem>
           <Link href="/favorites">Favorites</Link>
-        </NavItem>
-      </NavList>
-    </Nav>
+        </FooterItem>
+      </FooterList>
+    </FooterWrapper>
   );
 }

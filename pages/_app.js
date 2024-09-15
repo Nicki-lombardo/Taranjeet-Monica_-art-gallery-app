@@ -1,7 +1,11 @@
+
 import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import useSWR from "swr";
-import Navigation from "@/components/Navigation/Navigation";
+import Layout from "@/components/Layout/Layout";
+import GlobalStyles from "@/styles";
+import { theme } from '../components/theme';
+import { ThemeProvider } from "styled-components";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -14,9 +18,6 @@ function MyApp({ Component, pageProps }) {
     "art-pieces-info",
     { defaultValue: {} }
   );
-
-  if (error) return <div>Failed to load</div>;
-  if (!artPieces) return <div>Loading...</div>;
 
   const toggleFavorite = (slug) => {
     setArtPiecesInfo((prevInfo) => ({
@@ -41,17 +42,22 @@ function MyApp({ Component, pageProps }) {
     });
   };
 
+  if (error) return <div>Failed to load art pieces.</div>;
+  if (!artPieces) return <div>Loading art pieces...</div>;
+
   return (
-    <>
-      <Navigation />
-      <Component
-        {...pageProps}
-        artPieces={artPieces}
-        artPiecesInfo={artPiecesInfo}
-        onToggleFavorite={toggleFavorite}
-        onAddComment={addComment}
-      />
-    </>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Layout>
+        <Component
+          {...pageProps}
+          artPieces={artPieces}
+          artPiecesInfo={artPiecesInfo}
+          onToggleFavorite={toggleFavorite}
+          onAddComment={addComment}
+        />
+      </Layout>
+    </ThemeProvider>
   );
 }
 
