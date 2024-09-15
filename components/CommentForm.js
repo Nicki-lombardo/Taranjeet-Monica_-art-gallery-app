@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const Form = styled.form`
   display: flex;
@@ -28,9 +29,24 @@ const SubmitButton = styled.button`
 `;
 
 export default function CommentForm({ onSubmitComment }) {
+  const [comment, setComment] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (comment.trim()) {
+      onSubmitComment(comment);
+      setComment(''); 
+    }
+  };
+
   return (
-    <Form onSubmit={onSubmitComment}>
-      <Input type="text" placeholder="Leave a comment" />
+    <Form onSubmit={handleSubmit}>
+      <Input 
+        type="text" 
+        placeholder="Leave a comment" 
+        value={comment} 
+        onChange={(e) => setComment(e.target.value)} 
+      />
       <SubmitButton type="submit">Submit</SubmitButton>
     </Form>
   );

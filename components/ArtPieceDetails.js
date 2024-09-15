@@ -90,7 +90,6 @@ export default function ArtPieceDetails({
       </ColorPalette>
       <h2>Comments</h2>
       <Comments comments={comments} />
-      <CommentForm onSubmitComment={onSubmitComment} />
     </Container>
   );
 }
