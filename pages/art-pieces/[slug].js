@@ -28,7 +28,7 @@ export default function ArtPiecePage({
   return (
     <ArtPieceDetails
       image={artPiece.image}
-      title={artPiece.title}
+      title={artPiece.name}
       artist={artPiece.artist}
       year={artPiece.year}
       genre={artPiece.genre}

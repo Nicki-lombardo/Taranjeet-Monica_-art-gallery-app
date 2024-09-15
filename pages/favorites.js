@@ -1,4 +1,12 @@
 import ArtPieces from "../components/ArtPieces";
+import styled from 'styled-components';
+
+const EmptyMessage = styled.p`
+  text-align: center;
+  font-size: 1.5rem;
+  color: #666;
+  margin-top: 2rem;
+`;
 
 export default function FavoritesPage({
   artPieces,
@@ -12,11 +20,18 @@ export default function FavoritesPage({
   return (
     <div>
       <h1>Favorites</h1>
-      <ArtPieces
-        pieces={favoritePieces}
-        artPiecesInfo={artPiecesInfo}
-        onToggleFavorite={onToggleFavorite}
-      />
+
+      {favoritePieces.length === 0 ? (
+        <EmptyMessage>
+         You haven&apos;t added any favorite art pieces yet. Please add some to your favorites!
+        </EmptyMessage>
+      ) : (
+        <ArtPieces
+          pieces={favoritePieces}
+          artPiecesInfo={artPiecesInfo}
+          onToggleFavorite={onToggleFavorite}
+        />
+      )}
     </div>
   );
 }

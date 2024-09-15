@@ -10,14 +10,15 @@ const ArtPiecesContainer = styled.div`
   justify-items: center; 
 `;
 
-export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
+export default function ArtPieces({ pieces, 
+  artPiecesInfo, onToggleFavorite }) {
   return (
     <ArtPiecesContainer>
       {pieces.map((piece) => (
         <ArtPiecePreview
           key={piece.slug}
           imageSource={piece.imageSource}
-          title={piece.title}
+          title={piece.name}
           artist={piece.artist}
           slug={piece.slug}
           isFavorite={artPiecesInfo[piece.slug]?.isFavorite || false}
