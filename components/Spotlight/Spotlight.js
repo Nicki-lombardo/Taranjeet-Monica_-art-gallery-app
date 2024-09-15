@@ -30,12 +30,12 @@ export default function Spotlight({ artPiece,
     return <SpotlightContainer>No Spotlight Available 😞</SpotlightContainer>;
   }
 
-  const { imageSource, title, artist } = artPiece;
+  const { imageSource, name, artist } = artPiece;
 
   return (
     <SpotlightContainer>
-      <Image src={imageSource} alt={title} width={800} height={600} />
-      <SpotlightTitle>{title}</SpotlightTitle>
+      <Image src={imageSource} alt={name} width={800} height={600} />
+      <SpotlightTitle>{name}</SpotlightTitle>
       <p>{artist}</p>
       <FavoriteButton isFavorite={isFavorite} onToggleFavorite={onToggleFavorite} />
     </SpotlightContainer>
